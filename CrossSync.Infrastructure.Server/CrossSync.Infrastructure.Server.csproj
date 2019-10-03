@@ -5,7 +5,7 @@
     <RootNamespace>CrossSync.Infrastructure.Server</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Authors>Sébastien Cambon</Authors>
-    <Description>This provides a server side implementation of EntityFramework using versionned entities and tracking changes</Description>
+    <Description>This provides a server side implementation of EntityFramework using versioned entities and tracking changes</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 
     <Version>0.1.0</Version>

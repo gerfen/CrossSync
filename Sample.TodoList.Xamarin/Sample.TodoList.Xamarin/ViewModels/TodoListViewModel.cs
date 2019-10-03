@@ -34,7 +34,7 @@ namespace Sample.TodoList.Xamarin.ViewModels
 
     public ObservableCollection<Entities.Shared.TodoList> Todos { get; set; }
 
-    protected async override Task Initialize(CancellationToken cancellationToken)
+    protected override async Task Initialize(CancellationToken cancellationToken)
     {
       await base.Initialize(cancellationToken);
 

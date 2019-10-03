@@ -27,7 +27,11 @@ namespace CrossSync.AspNetCore.Api
     }
 
     [HttpGet]
-    public virtual async Task<IEnumerable<T>> Get(DateTimeOffset from) => Includes(await repository.GetAllAsync(f => f.UpdatedAt > from.UtcDateTime)).AsEnumerable();
+    public virtual async Task<IEnumerable<T>> Get(DateTimeOffset from)
+    {
+        var entities = await repository.GetAllAsync(f => f.UpdatedAt > from.UtcDateTime);
+        return Includes(entities).AsEnumerable();
+    }
 
     [HttpGet("{id}")]
     public virtual async Task<T> Get(Guid id) => await Includes(await repository.GetAllAsync()).FirstOrDefaultAsync(f => f.Id == id);

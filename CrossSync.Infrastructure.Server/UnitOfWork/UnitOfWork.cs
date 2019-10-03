@@ -40,7 +40,7 @@ namespace CrossSync.Infrastructure.Server.UnitOfWork
     /// <returns></returns>
     public Task<IDbContextTransaction> BeginTransaction(CancellationToken cancellationToken = default(CancellationToken))
     {
-      return context.Database.BeginTransactionAsync();
+      return context.Database.BeginTransactionAsync(cancellationToken);
     }
 
     /// <summary>
@@ -51,7 +51,7 @@ namespace CrossSync.Infrastructure.Server.UnitOfWork
     {
       var ctx = context;      
 
-      var events = ctx.ChangeTracker.Entries().Select(f => f.Entity).OfType<INotifiableEntity>().SelectMany(f => f.DomainEvents);
+      var events = ctx.ChangeTracker.Entries().Select(f => f.Entity).OfType<INotifiableEntity>().SelectMany(f => f.DomainEvents).ToList();
       if (events.Any())
         await Task.WhenAll(events.Select(async (d) => await mediator.Publish(d)).ToList());
 
